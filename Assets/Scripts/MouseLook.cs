@@ -8,9 +8,12 @@ public class MouseLook : MonoBehaviour
     private Vector2 _LookAxis;
     public Vector2 LookAxis => _LookAxis;
 
-    [Range(2f, 5f)]
+    [Range(2f, 10f)]
     public float Maxdistance_from_center = 3.5f;
-
+    [Range(1f, 10f)]
+    public float Maxheight = 2f;
+    [Range(0f, 3f)]
+    public float Minheight=1;
     [Range(2f, 5f)]
     public float Mindistance_from_center = 2.5f;
     [Range(27f, 40f)]
@@ -21,24 +24,39 @@ public class MouseLook : MonoBehaviour
 
     [Range(0.0005f, 1f)]
     public float lookSpeed = 0.005f;
+    
+
     private void OnEnable()
     {
         _Controls = new Controls();
         _Controls.Player.MouseMovement.performed += HandleLook;
         _Controls.Player.MouseMovement.Enable();
-        PlayerMovement.current.Moveu += HandleMove;
+
     }
 
     private void HandleMove()
     {
-        if (Vector3.Distance(transform.position, center.transform.position) > Maxdistance_from_center ||
-            Vector3.Distance(transform.position, center.transform.position) < Mindistance_from_center)
+        if (Vector3.Distance(transform.position, center.transform.position) > Maxdistance_from_center)
         {
-            Debug.Log(Vector3.Distance(transform.position, center.transform.position));
-            // transform.position = Vector3.Lerp(transform.position, center.transform.position, 0.2f * Time.deltaTime);
-            transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, Vector3.Distance(transform.position, center.transform.position) - 3f), 0.2f * Time.deltaTime);
-            transform.LookAt(center.transform);
+            //Debug.Log(Vector3.Distance(transform.position, center.transform.position));
+            // transform.position = Vector3.Lerp(transform.position, center.transform.position, 0.9f * Time.deltaTime);
+            // transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, Vector3.Distance(transform.position, center.transform.position) - 3f), 0.2f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, Vector3.Distance(transform.position, center.transform.position)), 3f * Time.deltaTime);
+            Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
         }
+        else if (Vector3.Distance(transform.position, center.transform.position) < Mindistance_from_center)
+        {
+            transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, -10f), 2f * Time.deltaTime);
+            Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
+        }
+        else
+        {
+            Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
+            transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
+        }
+        
     }
 
     private void OnDisable()
@@ -75,9 +93,9 @@ public class MouseLook : MonoBehaviour
                 break;
         }
 
-
         float z = transform.eulerAngles.z;
         transform.Rotate(0, 0, -z);
+        limit_angle();
     }
 
 
@@ -88,8 +106,22 @@ public class MouseLook : MonoBehaviour
         {
             center = FindObjectOfType<PlayerMovement>();
         }
-
+        PlayerMovement.current.Moveu += HandleMove;
+        Maxheight += center.transform.position.y;
+        Minheight += center.transform.position.y;
         transform.LookAt(center.transform);
+    }
+
+    void limit_angle()
+    {
+        if (transform.position.y > Maxheight)
+        {
+            transform.position = new Vector3(transform.position.x, Maxheight, transform.position.z);
+        }
+        else if (transform.position.y < Minheight)
+        {
+            transform.position = new Vector3(transform.position.x, Minheight, transform.position.z);
+        }
     }
 
 }

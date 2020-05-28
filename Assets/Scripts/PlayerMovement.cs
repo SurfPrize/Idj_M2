@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _player_rb;
     public Rigidbody Player_Rb => _player_rb;
     private PlayerState currentState;
-    [Range(6f, 10f)]
+    [Range(2f, 10f)]
     public float moveSpeed = 7f;
     public event Action Moveu;
 
@@ -85,12 +85,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // Debug.Log(MoveAxis.x * moveSpeed + " " + 0 + " " + MoveAxis.y * moveSpeed);
-        _player_rb.AddForce(MoveAxis.x * moveSpeed, 0, MoveAxis.y * moveSpeed);
-
-        if (Moveu != null)
-        {
-            Moveu();
-        }
+        Vector3 res = new Vector3(MoveAxis.x * moveSpeed, 0, MoveAxis.y * moveSpeed);
+        transform.rotation = Quaternion.Euler(Vector3.Scale(Vector3.up,Camera.main.transform.rotation.eulerAngles));
+        Player_Rb.AddRelativeForce(res, ForceMode.VelocityChange);
+        Moveu?.Invoke();
     }
 }

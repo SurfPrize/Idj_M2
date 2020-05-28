@@ -264,7 +264,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: adec8fbb2149d304f935778f78401a07, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -314,20 +314,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: Maxheight
+      value: 4.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: lookSpeed
+      value: 0.066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: Minheight
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: Mindistance_from_center
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: Maxdistance_from_center
+      value: 6.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 5216395832498573571, guid: 1606aa9d58a8bb944b373d51918083d6,
+        type: 3}
+      propertyPath: UpperLimit
+      value: 30.86
+      objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5180874
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2758813
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.15134907
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
