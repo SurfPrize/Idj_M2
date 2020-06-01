@@ -13,7 +13,7 @@ public class MouseLook : MonoBehaviour
     [Range(1f, 10f)]
     public float Maxheight = 2f;
     [Range(0f, 3f)]
-    public float Minheight=1;
+    public float Minheight = 1;
     [Range(2f, 5f)]
     public float Mindistance_from_center = 2.5f;
     [Range(27f, 40f)]
@@ -24,17 +24,27 @@ public class MouseLook : MonoBehaviour
 
     [Range(0.0005f, 1f)]
     public float lookSpeed = 0.005f;
-    
+
 
     private void OnEnable()
     {
         _Controls = new Controls();
         _Controls.Player.MouseMovement.performed += HandleLook;
         _Controls.Player.MouseMovement.Enable();
+        _Controls.Player.DirectionalMovement.performed += HandleMove;
+        _Controls.Player.DirectionalMovement.Enable();
 
     }
 
-    private void HandleMove()
+    private void HandleMove(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        if (obj.ReadValue<Vector2>() != Vector2.zero)
+        {
+            StartCoroutine(CenterCamToPlayer());
+        }
+    }
+
+    private IEnumerator CenterCamToPlayer()
     {
         if (Vector3.Distance(transform.position, center.transform.position) > Maxdistance_from_center)
         {
@@ -44,6 +54,7 @@ public class MouseLook : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, Vector3.Distance(transform.position, center.transform.position)), 3f * Time.deltaTime);
             Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
+            
         }
         else if (Vector3.Distance(transform.position, center.transform.position) < Mindistance_from_center)
         {
@@ -55,14 +66,18 @@ public class MouseLook : MonoBehaviour
         {
             Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
+            yield return null;
         }
-        
+        yield return new WaitForSeconds(Time.deltaTime);
+
     }
 
     private void OnDisable()
     {
         _Controls.Player.MouseMovement.performed -= HandleLook;
         _Controls.Player.MouseMovement.Disable();
+        _Controls.Player.DirectionalMovement.performed -= HandleMove;
+        _Controls.Player.DirectionalMovement.Disable();
     }
     private void HandleLook(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
@@ -95,7 +110,7 @@ public class MouseLook : MonoBehaviour
 
         float z = transform.eulerAngles.z;
         transform.Rotate(0, 0, -z);
-        limit_angle();
+        Limit_angle();
     }
 
 
@@ -106,14 +121,14 @@ public class MouseLook : MonoBehaviour
         {
             center = FindObjectOfType<PlayerMovement>();
         }
-        PlayerMovement.current.Moveu += HandleMove;
         Maxheight += center.transform.position.y;
         Minheight += center.transform.position.y;
         transform.LookAt(center.transform);
     }
 
-    void limit_angle()
+    private void Limit_angle()
     {
+        
         if (transform.position.y > Maxheight)
         {
             transform.position = new Vector3(transform.position.x, Maxheight, transform.position.z);
