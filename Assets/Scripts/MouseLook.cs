@@ -24,7 +24,7 @@ public class MouseLook : MonoBehaviour
 
     [Range(0.0005f, 1f)]
     public float lookSpeed = 0.005f;
-
+    private bool CoroutineRunning = false;
 
     private void OnEnable()
     {
@@ -38,7 +38,7 @@ public class MouseLook : MonoBehaviour
 
     private void HandleMove(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (obj.ReadValue<Vector2>() != Vector2.zero)
+        if (obj.ReadValue<Vector2>() != Vector2.zero && !CoroutineRunning)
         {
             StartCoroutine(CenterCamToPlayer());
         }
@@ -46,6 +46,7 @@ public class MouseLook : MonoBehaviour
 
     private IEnumerator CenterCamToPlayer()
     {
+        CoroutineRunning = true;
         if (Vector3.Distance(transform.position, center.transform.position) > Maxdistance_from_center)
         {
             //Debug.Log(Vector3.Distance(transform.position, center.transform.position));
@@ -54,7 +55,6 @@ public class MouseLook : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, Vector3.MoveTowards(transform.position, center.transform.position, Vector3.Distance(transform.position, center.transform.position)), 3f * Time.deltaTime);
             Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
-            
         }
         else if (Vector3.Distance(transform.position, center.transform.position) < Mindistance_from_center)
         {
@@ -62,13 +62,19 @@ public class MouseLook : MonoBehaviour
             Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
         }
-        else
+        else if (Quaternion.LookRotation(center.transform.position - transform.position) != transform.rotation)
         {
             Quaternion look = Quaternion.LookRotation(center.transform.position - transform.position);
             transform.rotation = Quaternion.Lerp(transform.rotation, look, Time.deltaTime * 4);
-            yield return null;
         }
-        yield return new WaitForSeconds(Time.deltaTime);
+        else
+        {
+            Debug.Log("adeus");
+            CoroutineRunning = false;
+            StopCoroutine(CenterCamToPlayer());
+        }
+        yield return new WaitForSeconds(Time.deltaTime / 2);
+        StartCoroutine(CenterCamToPlayer());
 
     }
 
@@ -84,7 +90,6 @@ public class MouseLook : MonoBehaviour
         try
         {
             _LookAxis = context.ReadValue<Vector2>();
-
             RotateCam();
         }
         catch
@@ -128,7 +133,7 @@ public class MouseLook : MonoBehaviour
 
     private void Limit_angle()
     {
-        
+
         if (transform.position.y > Maxheight)
         {
             transform.position = new Vector3(transform.position.x, Maxheight, transform.position.z);

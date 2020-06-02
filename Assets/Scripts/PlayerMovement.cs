@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private PlayerState currentState;
     [Range(2f, 10f)]
     public float moveSpeed = 7f;
-    public event Action Moveu;
 
 
     private void OnEnable()
@@ -86,8 +85,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 res = new Vector3(MoveAxis.x * moveSpeed, 0, MoveAxis.y * moveSpeed);
-        transform.rotation = Quaternion.Euler(Vector3.Scale(Vector3.up,Camera.main.transform.rotation.eulerAngles));
+        transform.rotation = Quaternion.Euler(Vector3.Scale(Vector3.up, Camera.main.transform.rotation.eulerAngles));
         Player_Rb.AddRelativeForce(res, ForceMode.VelocityChange);
-        Moveu?.Invoke();
     }
 }
