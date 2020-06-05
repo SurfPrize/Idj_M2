@@ -254,6 +254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901be91103744b345b42f944ab18ad9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  All_Biomes: []
+  BiomeCenters: []
+  prefab: {fileID: 1256755136925184039, guid: 5e575a117db00e94cb06c9b2ad694e73, type: 3}
+  MaxBiomeSize: 22.3
+  MaxBiomeDistance: 30
 --- !u!4 &1457006717
 Transform:
   m_ObjectHideFlags: 0
@@ -407,7 +412,7 @@ PrefabInstance:
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 19.1
       objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
@@ -417,7 +422,7 @@ PrefabInstance:
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.86
       objectReference: {fileID: 0}
     - target: {fileID: 8470977251314087931, guid: 1606aa9d58a8bb944b373d51918083d6,
         type: 3}
