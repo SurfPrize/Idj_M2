@@ -8,13 +8,31 @@ using static Enums;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
+    /// <summary>
+    /// Jogador principal, isto e um singleton
+    /// </summary>
     public static PlayerMovement current;
     private Vector2 _moveaxis;
+    /// <summary>
+    /// Movimento a ser produzido pelo jogador
+    /// </summary>
     public Vector2 MoveAxis => _moveaxis;
+    /// <summary>
+    /// Script Compilado em C# do novo input system do unity, o antigo e default nao ria funcionar
+    /// </summary>
     private Controls _Controls;
+    /// <summary>
+    /// RigidBody do jogador
+    /// </summary>
     private Rigidbody _player_rb;
     public Rigidbody Player_Rb => _player_rb;
+    /// <summary>
+    /// Estado atual do jogador
+    /// </summary>
     private PlayerState currentState;
+    /// <summary>
+    /// Velocidade do jogador
+    /// </summary>
     [Range(2f, 10f)]
     public float moveSpeed = 7f;
 
@@ -66,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         _player_rb = GetComponent<Rigidbody>();
         Player_Rb.freezeRotation = true;
     }
+
 
     private void Update()
     {

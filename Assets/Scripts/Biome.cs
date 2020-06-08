@@ -26,17 +26,33 @@ public class Biome : MonoBehaviour
         float angle = Mathf.PI * 2 / amount;
         for (int i = 0; i < amount; i++)
         {
-            result.Add(new BiomeExtender(new Vector2(transform.position.x + Mathf.Cos(angle) * Random.Range(biomesize / 3, biomesize),
-                transform.position.x + Mathf.Sin(angle) * Random.Range(biomesize / 3, biomesize))));
+            GameObject NovoPonto = new GameObject();
+
+            NovoPonto.AddComponent<BiomeExtender>().Move(new Vector2(transform.position.x + Mathf.Cos(angle * i) * Random.Range(biomesize / 3, biomesize),
+                transform.position.z + Mathf.Sin(angle * i) * Random.Range(biomesize / 3, biomesize)));
+            NovoPonto.name = "Ponto " + (i + 1);
+            NovoPonto.GetComponent<BiomeExtender>().ChangeBiome(this.GetComponent<Biome>());
+            NovoPonto.transform.parent = this.gameObject.transform;
+            result.Add(NovoPonto.GetComponent<BiomeExtender>());
+            //result.Add(new BiomeExtender(new Vector2(transform.position.x + Mathf.Cos(angle) * Random.Range(biomesize / 3, biomesize),
+            //    transform.position.x + Mathf.Sin(angle) * Random.Range(biomesize / 3, biomesize))));
         }
         Extensions = result;
     }
 
     public void Show_extensions()
     {
-        foreach(BiomeExtender este in Extensions)
+        foreach (BiomeExtender este in Extensions)
         {
             este.Show_debug();
+        }
+
+        Debug.DrawLine(Extensions[0].transform.position, Extensions[Extensions.Count - 1].transform.position);
+        for (int i = 0; i < Extensions.Count - 1; i++)
+        {
+
+            Debug.DrawLine(Extensions[i].transform.position, Extensions[i + 1].transform.position);
+
         }
     }
 }

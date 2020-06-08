@@ -6,14 +6,16 @@ public class BiomeExtender : Biome
 {
     private Vector2 pos;
 
-    public BiomeExtender(Vector2 pos) : base()
+    
+    public void Move(Vector2 pos)
     {
         this.pos = pos;
+        this.transform.position = new Vector3(pos.x, 0, pos.y);
     }
-    
+
     internal void Show_debug()
     {
-        Debug.DrawRay(new Vector3(pos.x, 0, pos.y), transform.position, Color.red);
+        Debug.DrawLine(transform.position, transform.parent.position, Color.blue);
     }
 
 }
