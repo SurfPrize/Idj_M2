@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203a6f79512594a4ab90bcbda27aa026, type: 3}
+  m_Name: BiomaTeste
+  m_EditorClassIdentifier: 
+  assets:
+  - {fileID: 178969471314437105, guid: 650ca14bfd8eadb40a735dfc7706546c, type: 3}
+  - {fileID: 545141577071656985, guid: 925697eba563f4b4cacc78dd23afda16, type: 3}
+  - {fileID: 5927873752519874114, guid: f9f8c720520cd4746ae16abb56ea5f79, type: 3}
+  nome: niggers
+  Sky_color: {r: 0.018393517, g: 0, b: 1, a: 0}
+  particles: {fileID: 198897649759126038, guid: 4d35711ba17dcd4409264568d9155360,
+    type: 3}

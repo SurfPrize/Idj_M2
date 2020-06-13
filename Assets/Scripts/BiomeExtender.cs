@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BiomeExtender : Biome
+public class BiomeExtender : BiomeBehaviour
 {
     private Vector2 pos;
 

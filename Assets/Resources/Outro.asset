@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203a6f79512594a4ab90bcbda27aa026, type: 3}
+  m_Name: Outro
+  m_EditorClassIdentifier: 
+  assets:
+  - {fileID: 4966979216251086383, guid: 577b1607882d09146b3ad733321dc478, type: 3}
+  - {fileID: 6119305231499220286, guid: f3d57e48e46ca804ab54512de1ba7b33, type: 3}
+  - {fileID: 0}
+  nome: o retardado
+  Sky_color: {r: 1, g: 0, b: 0, a: 0}
+  particles: {fileID: 198000010021673064, guid: 14d81e2c407975245973a11cdfbeb902,
+    type: 3}

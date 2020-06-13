@@ -108,7 +108,6 @@ public class MouseLook : MonoBehaviour
         }
         else
         {
-            Debug.Log("adeus");
             CoroutineRunning = false;
             StopCoroutine(CenterCamToPlayer());
         }

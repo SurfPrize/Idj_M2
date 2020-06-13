@@ -261,6 +261,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1825752187 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6315216869974478786, guid: 1606aa9d58a8bb944b373d51918083d6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8861553384912476076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825752194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825752187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a031c647e5b1a04e9d407cf2e3a656b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closest: []
+  current_Biome: []
+  debug: 1
 --- !u!1 &1986413374
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,8 +294,9 @@ GameObject:
   - component: {fileID: 1986413377}
   - component: {fileID: 1986413376}
   - component: {fileID: 1986413375}
+  - component: {fileID: 1986413379}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: chao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,6 +377,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986413379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986413374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f21e47159b282d48aedd2cbfc015a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8861553384912476076
 PrefabInstance:
   m_ObjectHideFlags: 0
