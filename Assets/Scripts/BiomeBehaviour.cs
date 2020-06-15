@@ -9,8 +9,11 @@ public class BiomeBehaviour : MonoBehaviour
 {
     public BiomeObj currentbiome;
     public List<BiomeExtender> Extensions;
+    public int decorations;
+
     public void ChangeBiome(BiomeObj novo)
     {
+        decorations = BiomeManager.BManager.amount_decoration;
         currentbiome = novo;
     }
 
@@ -33,7 +36,7 @@ public class BiomeBehaviour : MonoBehaviour
             //    transform.position.x + Mathf.Sin(angle) * Random.Range(biomesize / 3, biomesize))));
         }
         Extensions = result;
-        Decorate(3);
+        Decorate(decorations);
     }
 
     public void Show_extensions()
@@ -63,6 +66,7 @@ public class BiomeBehaviour : MonoBehaviour
                 new Vector3(transform.position.x + Mathf.Cos(angle) * dist,
                 0,
                 transform.position.z + Mathf.Sin(angle) * dist);
+            novo.transform.parent = gameObject.transform;
         }
     }
 

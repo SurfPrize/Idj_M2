@@ -9,6 +9,8 @@ public class BiomeManager : MonoBehaviour
     [SerializeField]
     public List<BiomeObj> All_Biomes = new List<BiomeObj>();
     public List<BiomeBehaviour> BiomeCenters = new List<BiomeBehaviour>();
+    [Range(1, 50)]
+    public int amount_decoration = 5;
     public GameObject prefab;
 
     public static BiomeManager BManager;
