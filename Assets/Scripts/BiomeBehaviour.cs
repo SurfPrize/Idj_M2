@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [Serializable]
 public class BiomeBehaviour : MonoBehaviour
@@ -12,7 +13,7 @@ public class BiomeBehaviour : MonoBehaviour
     {
         currentbiome = novo;
     }
-    
+
 
     public void DistributePoints(int amount, float biomesize)
     {
@@ -32,6 +33,7 @@ public class BiomeBehaviour : MonoBehaviour
             //    transform.position.x + Mathf.Sin(angle) * Random.Range(biomesize / 3, biomesize))));
         }
         Extensions = result;
+        Decorate(3);
     }
 
     public void Show_extensions()
@@ -50,5 +52,18 @@ public class BiomeBehaviour : MonoBehaviour
         }
     }
 
+    public void Decorate(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject novo = Instantiate(currentbiome.assets[UnityEngine.Random.Range(0, currentbiome.assets.Count - 1)]);
+            float angle = Random.Range(0, Mathf.PI * 2);
+            float dist = Random.Range(0, BiomeManager.BManager.MaxBiomeSize);
+            novo.gameObject.transform.position =
+                new Vector3(transform.position.x + Mathf.Cos(angle) * dist,
+                0,
+                transform.position.z + Mathf.Sin(angle) * dist);
+        }
+    }
 
 }

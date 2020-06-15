@@ -12,9 +12,8 @@ public class BiomeManager : MonoBehaviour
     public GameObject prefab;
 
     public static BiomeManager BManager;
-    [SerializeField]
     [Range(200f, 500f)]
-    private float MaxBiomeSize = 200;
+    public float MaxBiomeSize = 200;
     [SerializeField]
     [Range(100f, 800f)]
     private float MaxBiomeDistance = 400;
@@ -185,4 +184,6 @@ public class BiomeManager : MonoBehaviour
         }
 
     }
+
+    
 }
